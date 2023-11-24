@@ -34,7 +34,7 @@ def reconnect(ib_instance):
     if not ib_instance.isConnected():
         print("Ztraceno připojení k IB API, pokouším se znovu připojit...")
         try:
-            ib_instance.connect('127.0.0.1', 7497, clientId=1)
+            ib_instance.connect('127.0.0.1', 7497, clientId=1, timeout=10)
             print("Připojení k IB API bylo obnoveno.")
         except Exception as e:
             print(f"Chyba při pokusu o opětovné připojení: {e}")
@@ -47,7 +47,7 @@ def connect_to_ib():
 
     while attempt < max_attempts:
         try:
-            ib.connect('127.0.0.1', 7497, clientId=1)
+            ib.connect('127.0.0.1', 7497, clientId=1, timeout=10)
             print("Připojení k Interactive Brokers bylo úspěšné.")
             return ib
         except ConnectionRefusedError:
